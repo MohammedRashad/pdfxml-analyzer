@@ -8,7 +8,7 @@ small library to extract data from pdfxml and similar files
      * **[operation type] :** *--debug* **|** *--debug_save*
      * **[tag] :** *--horizonatal_only* **|** *--vertical_only* **|** *--all*
 * Import Library :
-   ```
+   ```python
    from analyze_pdfxml import * 
    root = #XML File Reading
    tags = #list of tags 
