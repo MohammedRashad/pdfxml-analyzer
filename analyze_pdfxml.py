@@ -1,8 +1,10 @@
 # Author : Rashad 
+#
 # Usage : 
 # python3 analyze_pdfxml.py [operation type] [tag]
 # [operation type] : --debug | --debug_save
 # [tag] : --horizonatal_only | --vertical_only | --all
+
 import xml.etree.ElementTree as ET
 import pandas as pd
 import wordninja
@@ -10,7 +12,7 @@ import sys
 import ast
 
 ############################################### Extraction Funtions ###############################################
-def analyze(root,tags):
+def analyze(root,tags, mode = None):
     output = []
     
     for tag in tags :
@@ -18,15 +20,16 @@ def analyze(root,tags):
             bbox = ast.literal_eval(i.attrib['bbox'])
             text = wordninja.split(str(i.text))
             
-            if sys.argv[2] == '--debug' or '--debug_save':
+            if sys.argv[2] == '--debug' or  sys.argv[2] == '--debug_save' or mode == '--debug_save' or  mode == '--debug':
                 print('bbox', "=", bbox)
                 print('data', "=", text)
 
             output.append([text , bbox[0] , bbox[1] , bbox[2]  ,bbox[3]])
 
-        if sys.argv[2] == '--debug_save':   
+        if sys.argv[2] == '--debug_save' or mode == '--debug_save' :   
             df = pd.DataFrame(output, columns=["text", "x0", "x1" , "y0" , "y1"])
             df.to_csv( tag + '.csv', index=False)
+        
 ############################################### Extraction Pipeline ###############################################
 if __name__ == "__main__" :
 
