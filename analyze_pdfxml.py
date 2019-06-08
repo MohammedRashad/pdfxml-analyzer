@@ -1,5 +1,4 @@
 # Author : Rashad 
-#
 # Usage : 
 # python3 analyze_pdfxml.py [operation type] [tag]
 # [operation type] : --debug | --debug_save
@@ -28,7 +27,6 @@ def analyze(root,tags):
         if sys.argv[2] == '--debug_save':   
             df = pd.DataFrame(output, columns=["text", "x0", "x1" , "y0" , "y1"])
             df.to_csv( tag + '.csv', index=False)
-        
 ############################################### Extraction Pipeline ###############################################
 if __name__ == "__main__" :
 
